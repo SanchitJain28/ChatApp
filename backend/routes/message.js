@@ -109,7 +109,29 @@ router.get("/api/getconversation", verifyUser, async (req, res) => {
     try {
         const messages = await conversation.find({
             participants: { $in: [req.user.user_id] }
-        }).populate("messages").populate("participants")
+        }).populate("participants")
+        res.send(messages)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.get("/api/getindividualconversation",verifyUser,async(req,res)=>{
+    const {receiver}=req.query
+    if(!receiver){
+        return res.send({errors:[{msg:"Please send the receiver id to get the consverstation"}]})
+    }
+    try {
+        const User=await user.findOne({email:receiver})
+        if(!User){
+            return res.send({errors:[{msg:"Sorry cant find the conservation"}]})
+        }
+        const messages=await conversation.find({
+            participants:{ $all: [req.user.user_id,User._id] }
+        }).populate("messages")
+        if(messages.length==0){
+            return res.send({errors:[{msg:"Sorry no message to display ,You have currently 0 messages with ${User.name}"}]})
+        }
         res.send(messages)
     } catch (error) {
         console.log(error)

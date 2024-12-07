@@ -43,18 +43,17 @@ export default function ButtonAppBar(props) {
           </Toolbar>
         </AppBar>
       </Box>
-      <div className="flex flex-col  justify-center  bg-slate-800	">
+      <div className="flex flex-col justify-center bg-zinc-800 	">
         {searchedUsers.length == 0 ? <p></p> : searchedUsers.map((e) => {
           return <>
-            <div className="flex justify-between mx-4 border m-1" onClick={() => {
-              setCurrentChat(e)
+            <div className="flex justify-between mx-4 border rounded-xl px-4 py-2 my-2" onClick={() => {
+              setCurrentChat(e.email)
               navigate("/individualchat")
             }} >
-              <ListItemButton component="a" href="#simple-list">
-                <Button>{e.name}</Button>
-                <p className='text-xs'>{e.email}</p>
-              </ListItemButton>
-
+              <p>
+                <p className='text-xl text-white'>{e.name}</p>
+                <p className='text-xs text-white'>{e.email}</p>
+              </p>
             </div>
           </>
         })}

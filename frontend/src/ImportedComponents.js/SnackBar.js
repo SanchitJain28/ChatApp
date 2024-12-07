@@ -6,6 +6,13 @@ import Alert from '@mui/material/Alert';
 export default function Snackbars() {
   const [open, setOpen] = React.useState(false);
 
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setOpen(false)
+    }, 2000);
+  }, )
+  
   const handleClick = () => {
     setOpen(true);
   };
@@ -20,7 +27,6 @@ export default function Snackbars() {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open Snackbar</Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert
           onClose={handleClose}

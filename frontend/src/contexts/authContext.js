@@ -4,8 +4,8 @@ import React from 'react'
 export const authAPI = createContext([])
 
 export function AuthContext(props) {
-
-  const [loginInfo,setLoginInfo]=useState(JSON.parse(localStorage.getItem("loginDetails"))?JSON.parse(localStorage.getItem("loginDetails")):null)
+  const [loginInfo,setLoginInfo]=useState(JSON.parse(localStorage.getItem("loginDetails"))?JSON.parse(localStorage.getItem("loginDetails")):null
+)
 
   const signUp = async (name, email, password, phoneNo) => {
     const url = "http://localhost:3001/api/createuser"

@@ -25,35 +25,34 @@ export default function Chat() {
     const fetchChats = async () => {
         const data = await fetchConservation()
         setChats(data)
-        // console.log(data)
+        console.log(data)
     }
     useEffect(() => {
         fetchChats()
     }, [])
     return (
         <>
-
-
             {console.log(onlineUsers)}
             {loginInfo ? <>
                 <ButtonAppBar message="Chat" />
-                <div className=" bg-zinc-800 text-slate-300 h-screen ">
+                <div className=" bg-zinc-800 min-h-screen text-slate-300 p-4">
                     {/* <p className='text-2xl mx-4'>Your chats</p> */}
                     {chats.map((e) => {
                         const Chatuser = e.participants.filter((event1) => {
                             return event1._id !== loginInfo._id
                         })
                         return <>
-                            <ListItemButton className='m-20 p-20' component="a" href="#simple-list" onClick={() => {
-
+                            <div className='p-4 mb-2 border border-zinc-900 rounded-xl mr-2 ml-2 ' onClick={() => {
                                 e.participants = Chatuser
-                                setCurrentChat(e)
+                                localStorage.setItem("currentChat",e.participants[0].email)
+                                setCurrentChat(e.participants[0].email)
                                 navigate('/individualchat')
                             }} >
-                                <ListItemText primary={Chatuser[0].name} />
-                                <p>{onlineUsers?.indexOf(Chatuser[0]._id) !== -1 ? <>online</> : <>Not online</>}</p>
-                            </ListItemButton>
-                            <Divider className='text-white bg-white'/>
+                                <p className='text-xl'>{Chatuser[0].name}</p>
+                                <p>{onlineUsers?.indexOf(Chatuser[0]._id) !== -1 ? <i class="fa-solid fa-globe"></i> : <>
+                                <i className="fa-solid fa-globe "></i> <p className='text-red-600	'>Offline</p>
+                                 </>}</p>
+                            </div>
                         </>
                     })}
                 </div>

@@ -6,7 +6,8 @@ import Login from './Login';
 export default function Home() {
     return (
         <>
-            <p className='text-xl m-8'>Welcome to [Your Chat App Name]
+        <div className="bg-zinc-800 min-h-screen">
+            <p className='text-xl text-white p-8'>Welcome to ChatNext
                 Stay Connected, Anytime, Anywhere
 
                 Seamlessly chat, connect, and share with friends, family, and colleagues.
@@ -21,12 +22,12 @@ export default function Home() {
                 Media Sharing
                 Cross-Platform Support
                 Ready to connect?
-                [Get Started Now]</p>
-            <div className="flex justify-between m-20">
+                Get Started Now</p>
+            <div className="flex justify-between p-20">
                 <SignUp className="mx-4"/>
                 <Login />
             </div>
-
+            </div>
         </>
     )
 }

@@ -12,17 +12,16 @@ export default function Login() {
   const navigate = useNavigate()
   const authContext = useContext(authAPI)
   const { login, setLoginInfo } = authContext
-  const { alert, setAlert } = useContext(chatAPI)
+  const { alert, setAlert,showAlert } = useContext(chatAPI)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   return (
     <>
-      {alert && <SimpleAlert />}
-      <Button onClick={() => setOpenModal(true)} variant="contained" className="mx-4">Log in</Button>
-      <Modal show={openModal} onClose={() => setOpenModal(false)} className="py-40">
-        <Modal.Header>Log In</Modal.Header>
-        <Modal.Body>
-          <div className="space-y-6 flex flex-col">
+      <Button onClick={() => setOpenModal(true)} variant="contained" className="mx-4 ">Log in</Button>
+      <Modal show={openModal} onClose={() => setOpenModal(false)} className="py-40 bg-zinc-800 ">
+        {/* <Modal.Header className="bg-zinc-900">Log In</Modal.Header> */}
+        <Modal.Body className="bg-zinc-900 ">
+          <div className="space-y-6 flex flex-col ">
             <Input placeholder="email" onChange={(e) => { setEmail(e.target.value) }}></Input>
             <Input placeholder="password" onChange={(e) => { setPassword(e.target.value) }}></Input>
             <Button variant="outlined" onClick={async () => {
@@ -40,6 +39,8 @@ export default function Login() {
           </div>
         </Modal.Body>
       </Modal>
+      {alert && <SimpleAlert />}
+
     </>
   );
 }
