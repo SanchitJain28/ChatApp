@@ -41,7 +41,6 @@ export default function ButtonAppBar(props) {
       
     </>
   }
-
   const searchRender=()=>{
     return <>
      <Box sx={{ flexGrow: 1 }} className='bg-black'>
@@ -65,14 +64,8 @@ export default function ButtonAppBar(props) {
     </>
    
   }
-  React.useEffect(() => {
-    setToggleBar(initailRender())
-  }, [])
-  
-  const navigate = useNavigate()
-  return (
-    <>
-     {toggleBar}
+  const searchResults=()=>{
+    return <>
      <div className="flex flex-col justify-center bg-zinc-800 	">
         {searchedUsers.length == 0 ? <p></p> : searchedUsers.map((e) => {
           return <>
@@ -91,6 +84,17 @@ export default function ButtonAppBar(props) {
           </>
         })}
       </div>
+    </>
+  }
+  React.useEffect(() => {
+    setToggleBar(initailRender())
+  }, [])
+  
+  const navigate = useNavigate()
+  return (
+    <>
+     {toggleBar}
+    {searchResults()}
     </>
   );
 }

@@ -9,7 +9,6 @@ export const app = express();
 export const server=http.createServer(app)
 //HAr socket io me chiz same rahegi
 export const io=new Server(server,{
-
     cors:{
         //frontend link jayegi isme
         origin:["http://localhost:3000"],

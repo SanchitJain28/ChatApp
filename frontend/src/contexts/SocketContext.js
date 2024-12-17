@@ -11,6 +11,7 @@ export function SocketContext(props) {
     const{loginInfo}=useContext(authAPI)
     useEffect(() => {
       if(loginInfo){
+        //BACKEND URL
         const socket=io("http://localhost:3001",{
             query:{
                 userId:loginInfo._id
