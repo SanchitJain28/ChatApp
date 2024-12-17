@@ -14,10 +14,10 @@ export default function ButtonAppBar(props) {
   const { searchUser, setCurrentChat, fetchConservation } = React.useContext(chatAPI)
   const [searchValue, setSearchValue] = React.useState("")
   const [searchedUsers, setSearchedUsers] = React.useState([])
-  const navigate = useNavigate()
-  return (
-    <>
-      <Box sx={{ flexGrow: 1 }} className='bg-black'>
+  const[toggleBar,setToggleBar]=React.useState(null)
+  const initailRender=()=>{
+    return <>
+     <Box sx={{ flexGrow: 1 }} className='bg-black'>
         <AppBar position="static" className='bg-black' >
           <Toolbar className='bg-zinc-900		'>
             <IconButton
@@ -32,7 +32,22 @@ export default function ButtonAppBar(props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {props.message}
             </Typography>
-            <TextField placeholder='Search user by name or email' variant='outlined' color="secondary" className='m-20 text-white' size="small" onChange={async (e) => {
+            <Button onClick={()=>{
+              setToggleBar(searchRender())
+            }}><i class="fa-solid fa-magnifying-glass"></i></Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      
+    </>
+  }
+
+  const searchRender=()=>{
+    return <>
+     <Box sx={{ flexGrow: 1 }} className='bg-black'>
+        <AppBar position="static" className='bg-black' >
+          <Toolbar className='bg-zinc-900		'>
+            <input placeholder='Search user by name or email'  className='w-full p-2 bg-zinc-800 rounded' size="small" onChange={async (e) => {
               const data = await searchUser(e.target.value)
               setSearchedUsers(data)
 
@@ -40,15 +55,33 @@ export default function ButtonAppBar(props) {
               // setSearchedUsers(data)
               setSearchValue(e.target.value)
             }} />
+            <Button onClick={()=>{
+              setToggleBar(initailRender())
+              setSearchedUsers([])
+            }} className='border'><i class="fa-solid fa-circle-xmark fa-xl"></i></Button>
           </Toolbar>
         </AppBar>
       </Box>
-      <div className="flex flex-col justify-center bg-zinc-800 	">
+    </>
+   
+  }
+  React.useEffect(() => {
+    setToggleBar(initailRender())
+  }, [])
+  
+  const navigate = useNavigate()
+  return (
+    <>
+     {toggleBar}
+     <div className="flex flex-col justify-center bg-zinc-800 	">
         {searchedUsers.length == 0 ? <p></p> : searchedUsers.map((e) => {
           return <>
-            <div className="flex justify-between mx-4 border rounded-xl px-4 py-2 my-2" onClick={() => {
+            <div className="flex justify-between mx-4 border border-zinc-900 rounded px-4 py-1 my-1" onClick={() => {
               setCurrentChat(e.email)
               navigate("/individualchat")
+              setToggleBar(initailRender())
+              setSearchedUsers([])
+
             }} >
               <p>
                 <p className='text-xl text-white'>{e.name}</p>

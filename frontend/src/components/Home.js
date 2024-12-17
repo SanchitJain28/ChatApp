@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import SignUp from './signUp';
 import Login from './Login';
+import MaterialUIModal from '../ImportedComponents.js/MaterialUIModal';
 
 export default function Home() {
     return (
@@ -26,6 +27,7 @@ export default function Home() {
             <div className="flex justify-between p-20">
                 <SignUp className="mx-4"/>
                 <Login />
+                {/* <MaterialUIModal/> */}
             </div>
             </div>
         </>

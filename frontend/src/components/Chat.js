@@ -8,6 +8,7 @@ import Login from './Login'
 import { Card } from 'flowbite-react'
 import { socketApi } from '../contexts/SocketContext'
 import Divider from '@mui/material/Divider';
+import SimpleAlert from './alert'
 
 
 export default function Chat() {
@@ -15,7 +16,7 @@ export default function Chat() {
     const chatContext = useContext(chatAPI)
     const authContext = useContext(authAPI)
     const socketContext = useContext(socketApi)
-    const { searchUser, setCurrentChat, fetchConservation } = chatContext
+    const { searchUser, setCurrentChat, fetchConservation,alert } = chatContext
     const { loginInfo } = authContext
     const { onlineUsers, socket } = socketContext
 
@@ -32,6 +33,8 @@ export default function Chat() {
     }, [])
     return (
         <>
+              {/* {alert && <SimpleAlert />} */}
+
             {console.log(onlineUsers)}
             {loginInfo ? <>
                 <ButtonAppBar message="Chat" />

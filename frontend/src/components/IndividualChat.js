@@ -38,6 +38,10 @@ export default function IndividualChat() {
     getConservation()
     console.log(currentChat)
   }, [])
+  useEffect(() => {
+    getConservation()
+  }, [currentChat])
+  
 
   useEffect(() => {
     socket?.on("newMessage", (newMessage) => {

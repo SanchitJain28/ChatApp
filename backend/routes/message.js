@@ -56,7 +56,7 @@ router.post("/api/sendmessage",
 
             //Avoiding a major glitch
             if (findUser._id == req.user.user_id) {
-                return res.send("You cannot message yourselves currently")
+               return res.send({errors:[{msg:"You cannot message yourselves currently,THIS FUNCTIONALITY IS DISABLED NOW"}]})
             }
 
             //this part sees if there is any converstaion ,if there is no conversation it creates a new conversation 
