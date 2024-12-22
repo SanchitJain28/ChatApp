@@ -1,4 +1,4 @@
-import { Button, Input } from '@mui/material'
+import { Button, Fade, Input, Slide } from '@mui/material'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import ButtonAppBar from '../ImportedComponents.js/Appbar'
 import { chatAPI } from '../contexts/ChatContext'
@@ -8,6 +8,7 @@ import { socketApi } from '../contexts/SocketContext'
 import SimpleAlert from './alert'
 import { TextInput } from 'flowbite-react'
 import Snackbars from '../ImportedComponents.js/SnackBar'
+import { useNavigate } from 'react-router-dom'
 
 export default function IndividualChat() {
   const endRef = useRef(null);
@@ -19,7 +20,7 @@ export default function IndividualChat() {
     });
   };
 
-
+  const navigate=useNavigate()
   const { currentChat, fetchConservation, sendMessage, alert, setAlert, getIndividualConservation } = useContext(chatAPI)
   const { loginInfo } = useContext(authAPI)
   const { socket } = useContext(socketApi)
@@ -42,6 +43,11 @@ export default function IndividualChat() {
     getConservation()
   }, [currentChat])
   
+   useEffect(() => {
+        if(!loginInfo){
+          navigate("/")
+        }
+      }, [])
 
   useEffect(() => {
     socket?.on("newMessage", (newMessage) => {
@@ -64,14 +70,18 @@ export default function IndividualChat() {
           {messages.length!==0 ?messages?.map((e) => {
             return <>
               {loginInfo._id == e.sender ? <>
+              <Slide in={true} direction='left'>
                 <div ref={endRef} re className="flex justify-end items-end mx-4 my-1">
                   <p className=' bg-zinc-950 text-white p-4 rounded-2xl'>{e.message}</p>
                 </div>
+                </Slide>
               </>
                 : <>
+                <Slide  in={true} direction='right'>
                   <div ref={endRef} className="flex items-start mx-4 my-1">
                     <p className=' bg-blue-800 text-white p-4 rounded-2xl'>{e.message}</p>
                   </div>
+                  </Slide>
                 </>}
             </>
           }

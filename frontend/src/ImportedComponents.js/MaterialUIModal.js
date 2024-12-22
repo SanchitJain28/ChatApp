@@ -3,15 +3,15 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Input } from '@mui/material';
+import { Input, Slide, Zoom } from '@mui/material';
 import { authAPI, AuthContext } from '../contexts/authContext';
 import { chatAPI } from '../contexts/ChatContext';
 import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute',
-  top: '50%',
-  left: '50%',
+  // top: '100px',
+  // left: '50px',
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'white',
@@ -39,8 +39,10 @@ export default function MaterialUIModal() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        className='flex flex-column justify-center align-center'
       >
-        <Box sx={style}>
+        <Zoom in={true} timeout={1000}>
+        <Box sx={style} c>
         <Input placeholder="email" onChange={(e) => { setEmail(e.target.value) }}></Input>
             <Input placeholder="password" onChange={(e) => { setPassword(e.target.value) }}></Input>
             <Button variant="outlined" onClick={async () => {
@@ -56,6 +58,7 @@ export default function MaterialUIModal() {
               navigate("/chat")
             }}>Log In</Button>
         </Box>
+        </Zoom>
       </Modal>
     </div>
   );

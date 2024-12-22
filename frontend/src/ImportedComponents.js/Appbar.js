@@ -6,11 +6,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { ListItemButton, ListItemText, TextField } from '@mui/material';
+import { Drawer, ListItemButton, ListItemText, TextField } from '@mui/material';
 import { chatAPI } from '../contexts/ChatContext';
 import { useNavigate } from 'react-router-dom';
+import { authAPI } from '../contexts/authContext';
+import AppDrawer from './Drawer';
 
 export default function ButtonAppBar(props) {
+  const {loginInfo}=React.useContext(authAPI)
   const { searchUser, setCurrentChat, fetchConservation } = React.useContext(chatAPI)
   const [searchValue, setSearchValue] = React.useState("")
   const [searchedUsers, setSearchedUsers] = React.useState([])
@@ -19,22 +22,17 @@ export default function ButtonAppBar(props) {
     return <>
      <Box sx={{ flexGrow: 1 }} className='bg-black'>
         <AppBar position="static" className='bg-black' >
-          <Toolbar className='bg-zinc-900		'>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
+          <Toolbar className='bg-zinc-900'>
+          <AppDrawer/>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {props.message}
             </Typography>
-            <Button onClick={()=>{
+            {loginInfo?<>
+              <Button onClick={()=>{
               setToggleBar(searchRender())
             }}><i class="fa-solid fa-magnifying-glass"></i></Button>
+            </>:<>
+            </>}
           </Toolbar>
         </AppBar>
       </Box>

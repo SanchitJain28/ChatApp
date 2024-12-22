@@ -48,7 +48,7 @@ router.post("/api/sendmessage",
                     { email: Chatuser }
                 ]
             })
-
+            //HELLO
             //finds the user by name
             if (!findUser) {
                 return res.send("User cannot be found")

@@ -12,12 +12,17 @@ import {
 import Chat from './components/Chat';
 import IndividualChat from './components/IndividualChat';
 import { SocketContext } from './contexts/SocketContext';
+import Login from './components/Login';
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Home />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
     {
       path: "/chat",
