@@ -20,9 +20,9 @@ export default function ButtonAppBar(props) {
   const[toggleBar,setToggleBar]=React.useState(null)
   const initailRender=()=>{
     return <>
-     <Box sx={{ flexGrow: 1 }} className='bg-black'>
-        <AppBar position="static" className='bg-black' >
-          <Toolbar className='bg-zinc-900'>
+     <Box sx={{ flexGrow: 1,padding:2 }} className='bg-black'>
+        <AppBar sx={{borderRadius:2}} position="static" className='bg-black' >
+          <Toolbar sx={{borderRadius:2}} className='bg-black border border-zinc-600 rounded-lg p-4'>
           <AppDrawer/>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {props.message}
@@ -41,10 +41,10 @@ export default function ButtonAppBar(props) {
   }
   const searchRender=()=>{
     return <>
-     <Box sx={{ flexGrow: 1 }} className='bg-black'>
-        <AppBar position="static" className='bg-black' >
-          <Toolbar className='bg-zinc-900		'>
-            <input placeholder='Search user by name or email'  className='w-full p-2 bg-zinc-800 rounded' size="small" onChange={async (e) => {
+     <Box sx={{ flexGrow: 1,padding:2 }} className='bg-black'>
+        <AppBar sx={{borderRadius:2}} position="static" className='bg-black' >
+          <Toolbar className='bg-black border border-zinc-600 rounded-lg p-4'>
+            <input placeholder='Search user by name or email'  className='w-full p-2 bg-black rounded' size="small" onChange={async (e) => {
               const data = await searchUser(e.target.value)
               setSearchedUsers(data)
 
@@ -64,7 +64,7 @@ export default function ButtonAppBar(props) {
   }
   const searchResults=()=>{
     return <>
-     <div className="flex flex-col justify-center bg-zinc-800 	">
+     <div className="flex flex-col justify-center bg-black 	">
         {searchedUsers.length == 0 ? <p></p> : searchedUsers.map((e) => {
           return <>
             <div className="flex justify-between mx-4 border border-zinc-900 rounded px-4 py-1 my-1" onClick={() => {

@@ -6,31 +6,50 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { authAPI } from '../contexts/authContext';
 import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { motion } from 'motion/react';
 
 export default function AppDrawer() {
     const [open, setOpen] = React.useState(false);
-    const {setLoginInfo}=React.useContext(authAPI)
+    const { setLoginInfo } = React.useContext(authAPI)
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     const DrawerList = (
-        <Box sx={{ width: 250, height: 10000, bgcolor: '#007FFF' }} role="presentation" onClick={toggleDrawer(false)} className="bg-black">
-            <div className="flex flex-col my-2">
-                <Button variant='contained' sx={{
+        <>
+        <div className="hidden lg:block">
+            <Box sx={{ width: 700, height: 920, bgcolor: '#090B0D', border: 2 }} role="presentation" onClick={toggleDrawer(false)} className="bg-black">
+                <div className=" flex flex-col my-2">
+                    <button variant='contained' sx={{
+                        bgcolor: "black", marginLeft: 4, margin: 1
+                    }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'>Your profile </button>
+                    <button variant='contained' sx={{ bgcolor: "black", margin: 1 }} onClick={() => {
+                        setLoginInfo(null)
+                    }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'><LogoutIcon /></button>
+                    <button sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
+                        navigate("/")
+                    }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'>Home</button>
+                </div>
+            </Box>
+        </div>
+        <div className="block lg:hidden">
+        <Box sx={{ width: 300, height: 950, bgcolor: '#090B0D', border: 2,padding:4 }} role="presentation" onClick={toggleDrawer(false)} className="bg-black">
+            <div className=" flex flex-col my-2">
+                <motion.button variant='contained' sx={{
                     bgcolor: "black", marginLeft: 4, margin: 1
-
-                }}>Your profile </Button>
-                <Button variant='contained' sx={{ bgcolor: "black", margin: 1 }} onClick={() => {
+                }} className='mx-4 my-2 bg-blue-600 p-4 text-xl font-mono' whileInView={{scale:1.2}}>Your profile </motion.button>
+                <button variant='contained' sx={{ bgcolor: "black", margin: 1 }} onClick={() => {
                     setLoginInfo(null)
-                }}><LogoutIcon/></Button>
-                <Button  sx={{ bgcolor: "black", margin: 1 }} variant='contained'  onClick={()=>{
+                }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'><LogoutIcon /></button>
+                <button sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
                     navigate("/")
-                }}>Home</Button>
+                }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'>Home</button>
             </div>
-
-
         </Box>
+    </div>
+        </>
+        
+
     );
 
     return (

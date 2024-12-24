@@ -66,7 +66,7 @@ export default function IndividualChat() {
       <Snackbars />
       {loginInfo ? <>
         <ButtonAppBar message={currentChat} />
-        <div className="flex flex-col justify-items-end bg-zinc-800 min-h-screen pb-40">
+        <div className="flex flex-col justify-items-end bg-black min-h-screen pb-40">
           {messages.length!==0 ?messages?.map((e) => {
             return <>
               {loginInfo._id == e.sender ? <>
@@ -88,13 +88,13 @@ export default function IndividualChat() {
           ):<><p className='text-3xl white'>No messages to display</p></> }
         </div>
         {/* this gives the alert in the app */}
-        {alert && <SimpleAlert />}
-        <div className="flex fixed bottom-0 bg-zinc-900 py-4 justify-between w-full ">
+        {<SimpleAlert />}
+        <div className="flex fixed bottom-0 bg-black py-4 justify-between w-full ">
           <input onChange={(e) => {
             console.log(sendMessages)
             setsendMessages(e.target.value)
-          }} variant="outlined" value={sendMessages} className='w-full rounded mx-2 bg-zinc-700 text-white p-4' />
-          <Button className='p-4' onClick={async () => {
+          }} variant="outlined" value={sendMessages} className='w-full rounded mx-2 bg-black border border-green-400 text-white p-4' />
+          <button className='p-4 rounded-lg mx-4 w-20 bg-yellow-600' onClick={async () => {
             const data = await sendMessage(currentChat, sendMessages)
             console.log(data)
             if (data.errors) {
@@ -104,7 +104,7 @@ export default function IndividualChat() {
             scrollToBottom()
             setMessages([...messages, data])
             setsendMessages("")
-          }} variant='contained' >Send</Button>
+          }} variant='contained' ><i class="fa-solid fa-arrow-right"></i></button>
         </div>
       </> : <>
         <Login />

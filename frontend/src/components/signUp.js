@@ -5,6 +5,7 @@ import { authAPI } from "../contexts/authContext";
 import { chatAPI } from "../contexts/ChatContext";
 import SimpleAlert from "./alert";
 import { useNavigate } from "react-router-dom";
+import { motion } from "motion/react"
 
 
 export default function SignUp() {
@@ -21,19 +22,17 @@ export default function SignUp() {
   return (
     <>
     {/* FOR TRANSITIONS TO TAKE PLACE THERE SHOULD BE ONLY ONE CHILD?DIRECT CHILD */}
-    <Slide in={true}>
-      <div className="my-2">
-      <Button onClick={() => setOpenModal(true)} variant="contained" className="mx-4 w-full border my-2">Sign Up</Button>
-      <Slide in={true}>
+      <motion.div className="my-2" initial={{opacity:0}} animate={{opacity:1,transition:0.5}}>
+      <motion.button whileHover={{ scale: 1.5 }} onClick={() => setOpenModal(true)} variant="contained" className="text-xl  lg:w-40 p-4 bg-blue-600 rounded-lg min-h-12">Sign Up</motion.button>
         <div className="">
-      <Modal show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header>Sign Up</Modal.Header>
-        <Modal.Body>
+      <Modal style={{borderRadius:2}} show={openModal} onClose={() => setOpenModal(false)} className="rounded-xl bg-black" >
+        <Modal.Header className="bg-black ">Sign Up</Modal.Header>
+        <Modal.Body style={{backgroundColor:"black"}} className="bg-black rounded-xl">
           <div className="space-y-6 flex flex-col">
-           <Input placeholder="Name" onChange={(e)=>{setName(e.target.value)}}></Input>
-           <Input placeholder="email" onChange={(e)=>{setEmail(e.target.value)}}></Input>
-           <Input placeholder="password" onChange={(e)=>{setPassword(e.target.value)}}></Input>
-           <Input placeholder="PHONE NO" onChange={(e)=>{setPhone(e.target.value)}}></Input>
+           <input placeholder="Name" onChange={(e)=>{setName(e.target.value)}}></input>
+           <input placeholder="email" onChange={(e)=>{setEmail(e.target.value)}}></input>
+           <input placeholder="password" onChange={(e)=>{setPassword(e.target.value)}}></input>
+           <input placeholder="PHONE NO" onChange={(e)=>{setPhone(e.target.value)}}></input>
             <Button variant="outlined" onClick={async()=>{
                const data=await signUp(name,email,password,phone)
                if (data.errors) {
@@ -52,10 +51,7 @@ export default function SignUp() {
       </Modal>
       </div>
 
-      </Slide>
-      </div>
-
-      </Slide>
+      </motion.div>
             {alert && <SimpleAlert />}
       
     </>

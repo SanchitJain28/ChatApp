@@ -67,8 +67,8 @@ export default function Chat() {
     return (
         <>
             {loginInfo ? <>
-                <ButtonAppBar message="Chat" />
-                <div className=" bg-zinc-800 min-h-screen text-slate-300 p-4">
+                <ButtonAppBar message="" />
+                <div className=" bg-black min-h-screen text-slate-300 p-4">
                     {/* <p className='text-2xl mx-4'>Your chats</p> */}
                     {chats.length==0 ? emptyChats() : showChats()}   
                 </div>

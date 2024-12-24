@@ -6,6 +6,7 @@ import SimpleAlert from "./alert";
 import { chatAPI } from "../contexts/ChatContext";
 import MagicLinkAlertSignInPage from "../ImportedComponents.js/MUIloginPage";
 import ButtonAppBar from "../ImportedComponents.js/Appbar";
+import { motion } from "motion/react";
 
 
 export default function Login() {
@@ -26,14 +27,14 @@ export default function Login() {
   return (
     <>
     <ButtonAppBar/>
-        <div className="bg-zinc-800 min-h-screen py-40 px-4">
+        <div className="bg-black min-h-screen py-40 px-4">
 
         <Slide in={true}>
 
-              <div className="space-y-6 flex flex-col">
-                <input placeholder="email" className="border border-zinc-600 p-4 rounded w-full bg-zinc-800" onChange={(e) => { setEmail(e.target.value) }}></input>
-                <input placeholder="password" className="border border-zinc-600 p-4 rounded w-full bg-zinc-800" onChange={(e) => { setPassword(e.target.value) }}></input>
-                <Button variant="outlined" onClick={async () => {
+              <div className="space-y-6 flex flex-col p-8">
+                <motion.input whileFocus={{scale:1.1}} placeholder="email" className="focus:outline-none  text-white font-mono text-xl border border-green-600 p-4 rounded w-full bg-black" onChange={(e) => { setEmail(e.target.value) }}></motion.input>
+                <motion.input whileFocus={{scale:1.1}} placeholder="password" className="focus:outline-none text-white font-mono text-xl border border-green-600 p-4 rounded w-full bg-black" onChange={(e) => { setPassword(e.target.value) }}></motion.input>
+                <button variant="outlined" onClick={async () => {
                   const data = await login(email, password)
                   if (data.errors) {
                     return setAlert({ msg: data.errors[0].msg, status: "error" })
@@ -44,7 +45,7 @@ export default function Login() {
                   setAlert({ msg: "Login succesful", status: "success" })
                   console.log(data)
                   navigate("/chat")
-                }}>Log In</Button>
+                }} className="lg:text-4xl text-xl font-mono text-black w-40 min-h-8 rounded-lg p-4 bg-blue-600">Log In</button>
               </div>
               </Slide>
 
