@@ -29,6 +29,9 @@ export default function AppDrawer() {
                     <button sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
                         navigate("/")
                     }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'>Home</button>
+                     <button sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
+                    navigate("/chat")
+                }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'>Chats</button>
                 </div>
             </Box>
         </div>
@@ -37,13 +40,16 @@ export default function AppDrawer() {
             <div className=" flex flex-col my-2">
                 <motion.button variant='contained' sx={{
                     bgcolor: "black", marginLeft: 4, margin: 1
-                }} className='mx-4 my-2 bg-blue-600 p-4 text-xl font-mono' whileInView={{scale:1.2}}>Your profile </motion.button>
-                <button variant='contained' sx={{ bgcolor: "black", margin: 1 }} onClick={() => {
+                }} className='mx-4 my-2 bg-blue-700 p-4 text-lg font-bold text-white font-mono rounded-xl' whileInView={{scale:1.1}}>Your profile </motion.button>
+                <motion.button whileInView={{scale:1.1}} variant='contained' sx={{ bgcolor: "black", margin: 1 }} onClick={() => {
                     setLoginInfo(null)
-                }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'><LogoutIcon /></button>
-                <button sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
+                }} className='mx-4 my-2 bg-blue-700 p-4 text-lg font-bold text-white font-mono rounded-xl'><LogoutIcon /></motion.button>
+                <motion.button whileInView={{scale:1.1}} sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
                     navigate("/")
-                }} className='mx-4 my-2 bg-blue-400 p-4 text-xl font-mono'>Home</button>
+                }} className='mx-4 my-2 bg-blue-700 p-4 text-lg font-bold text-white font-mono rounded-xl'>Home</motion.button>
+                  <motion.button whileInView={{scale:1.1}} sx={{ bgcolor: "black", margin: 1 }} variant='contained' onClick={() => {
+                    navigate("/chat")
+                }} className='mx-4 my-2 bg-blue-700 p-4 text-lg font-bold text-white font-mono rounded-xl'>Chats</motion.button>
             </div>
         </Box>
     </div>

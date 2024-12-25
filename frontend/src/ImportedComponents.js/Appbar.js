@@ -14,7 +14,7 @@ import AppDrawer from './Drawer';
 
 export default function ButtonAppBar(props) {
   const {loginInfo}=React.useContext(authAPI)
-  const { searchUser, setCurrentChat, fetchConservation } = React.useContext(chatAPI)
+  const { searchUser, setCurrentChat, fetchConservation ,currentChat} = React.useContext(chatAPI)
   const [searchValue, setSearchValue] = React.useState("")
   const [searchedUsers, setSearchedUsers] = React.useState([])
   const[toggleBar,setToggleBar]=React.useState(null)
@@ -44,7 +44,7 @@ export default function ButtonAppBar(props) {
      <Box sx={{ flexGrow: 1,padding:2 }} className='bg-black'>
         <AppBar sx={{borderRadius:2}} position="static" className='bg-black' >
           <Toolbar className='bg-black border border-zinc-600 rounded-lg p-4'>
-            <input placeholder='Search user by name or email'  className='w-full p-2 bg-black rounded' size="small" onChange={async (e) => {
+            <input placeholder='Search user by name or email'  className='focus:outline-none w-full p-2 bg-black rounded' size="small" onChange={async (e) => {
               const data = await searchUser(e.target.value)
               setSearchedUsers(data)
 
@@ -86,7 +86,8 @@ export default function ButtonAppBar(props) {
   }
   React.useEffect(() => {
     setToggleBar(initailRender())
-  }, [])
+  }, [currentChat])
+
   
   const navigate = useNavigate()
   return (
