@@ -8,7 +8,7 @@ export function AuthContext(props) {
 )
 
   const signUp = async (name, email, password, phoneNo) => {
-    const url = "http://localhost:3001/api/createuser"
+    const url = "https://chatapp-cwdy.onrender.com/api/createuser"
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -23,7 +23,7 @@ export function AuthContext(props) {
   }
 
   const login=async(email,password)=>{
-   const url="http://localhost:3001/api/login" 
+   const url="https://chatapp-cwdy.onrender.com/api/login" 
    const response = await fetch(url, {
     method: "POST",
     headers: {

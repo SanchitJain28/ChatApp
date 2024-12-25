@@ -13,7 +13,7 @@ export  function ChatContext(props) {
     }
 
     const searchUser=async(search)=>{
-        const url=`http://localhost:3001/api/searchuser?search=${search}`
+        const url=`https://chatapp-cwdy.onrender.com/api/searchuser?search=${search}`
         const response=await fetch(url,{
             method:"GET"
         })
@@ -22,7 +22,7 @@ export  function ChatContext(props) {
     }
 
     const fetchConservation=async()=>{
-        const url="http://localhost:3001/api/getconversation"
+        const url="https://chatapp-cwdy.onrender.com/api/getconversation"
         const response=await fetch(url,{
             method:"GET",
             headers:{
@@ -35,7 +35,7 @@ export  function ChatContext(props) {
 
     const sendMessage=async(user,message)=>{
         try {
-            const url=`http://localhost:3001/api/sendmessage?Chatuser=${user}`
+            const url=`https://chatapp-cwdy.onrender.com/api/sendmessage?Chatuser=${user}`
             const response=await fetch(url,{
                 method:"POST",
                 body:JSON.stringify({
@@ -57,7 +57,7 @@ export  function ChatContext(props) {
 
     const getIndividualConservation=async(recieverEmail)=>{
         try {
-            const url=`http://localhost:3001/api/getindividualconversation?receiver=${recieverEmail}`
+            const url=`https://chatapp-cwdy.onrender.com/api/getindividualconversation?receiver=${recieverEmail}`
             const response=await fetch(url,{
                 method:"GET",
                 headers:{

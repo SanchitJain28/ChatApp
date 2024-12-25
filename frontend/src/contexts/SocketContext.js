@@ -12,7 +12,7 @@ export function SocketContext(props) {
     useEffect(() => {
       if(loginInfo){
         //BACKEND URL
-        const socket=io("http://localhost:3001",{
+        const socket=io("https://chatapp-cwdy.onrender.com",{
             query:{
                 userId:loginInfo._id
             }
