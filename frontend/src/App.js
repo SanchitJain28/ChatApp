@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './components/Home';
 import { AuthContext } from './contexts/authContext';
-
 import {
   createBrowserRouter,
   RouterProvider,
