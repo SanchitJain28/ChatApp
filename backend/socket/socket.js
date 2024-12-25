@@ -11,7 +11,7 @@ export const server=http.createServer(app)
 export const io=new Server(server,{
     cors:{
         //frontend link jayegi isme
-        origin:["http://localhost:3000"],
+        origin:["https://instantchatify.netlify.app"],
         methods:["GET","POST"]
     }
 })
